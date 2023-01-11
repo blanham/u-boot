@@ -225,6 +225,8 @@ efi_status_t efi_init_obj_list(void)
 {
 	efi_status_t ret = EFI_SUCCESS;
 
+	printf("EFI: initializing object list\n");
+
 	/* Initialize once only */
 	if (efi_obj_list_initialized != OBJ_LIST_NOT_INITIALIZED)
 		return efi_obj_list_initialized;
@@ -279,6 +281,13 @@ efi_status_t efi_init_obj_list(void)
 
 		ret = efi_tcg2_do_initial_measurement();
 		if (ret == EFI_SECURITY_VIOLATION)
+			goto out;
+	}
+
+	/* Install EFI_SERIAL_IO_PROTOCOL */
+	if (IS_ENABLED(CONFIG_EFI_SERIAL_IO_PROTOCOL)) {
+		ret = efi_serial_register();
+		if (ret != EFI_SUCCESS)
 			goto out;
 	}
 

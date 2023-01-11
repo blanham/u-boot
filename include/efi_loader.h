@@ -248,6 +248,7 @@ extern struct efi_system_table systab;
 extern struct efi_simple_text_output_protocol efi_con_out;
 extern struct efi_simple_text_input_protocol efi_con_in;
 extern struct efi_console_control_protocol efi_console_control;
+extern struct efi_serial_io_protocol efi_serial_io;
 extern const struct efi_device_path_to_text_protocol efi_device_path_to_text;
 /* implementation of the EFI_DEVICE_PATH_UTILITIES_PROTOCOL */
 extern const struct efi_device_path_utilities_protocol
@@ -259,6 +260,7 @@ extern const struct efi_hii_config_routing_protocol efi_hii_config_routing;
 extern const struct efi_hii_config_access_protocol efi_hii_config_access;
 extern const struct efi_hii_database_protocol efi_hii_database;
 extern const struct efi_hii_string_protocol efi_hii_string;
+extern struct efi_serial_io_protocol efi_serial_io;
 
 uint16_t *efi_dp_str(struct efi_device_path *dp);
 
@@ -300,6 +302,8 @@ extern const efi_guid_t efi_file_info_guid;
 /* GUID for file system information */
 extern const efi_guid_t efi_file_system_info_guid;
 extern const efi_guid_t efi_guid_device_path_utilities_protocol;
+/* GUID of the serial io protocol */
+extern const efi_guid_t efi_guid_serial_io_protocol;
 /* GUID of the deprecated Unicode collation protocol */
 extern const efi_guid_t efi_guid_unicode_collation_protocol;
 /* GUIDs of the Load File and Load File2 protocol */
@@ -551,6 +555,8 @@ void efi_try_purge_kaslr_seed(void *fdt);
 efi_status_t efi_console_register(void);
 /* Called by efi_init_obj_list() to proble all block devices */
 efi_status_t efi_disks_register(void);
+/* Called by efi_init_obj_list() to install EFI_SERIAL_IO_PROTOCOL */
+efi_status_t efi_serial_register(void);
 /* Called by efi_init_obj_list() to install EFI_RNG_PROTOCOL */
 efi_status_t efi_rng_register(void);
 /* Called by efi_init_obj_list() to install EFI_TCG2_PROTOCOL */

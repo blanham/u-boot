@@ -80,6 +80,11 @@ efi_status_t efi_root_node_register(void)
 		 &efi_guid_hii_database_protocol,
 		 &efi_hii_database,
 #endif
+//#if CONFIG_IS_ENABLED(EFI_SERIAL_IO_PROTOCOL)
+		 /* Serial I/O protocol */
+		 //&efi_guid_serial_io_protocol,
+		 //&efi_serial_io_protocol,
+//#endif
 		 NULL);
 	efi_root->type = EFI_OBJECT_TYPE_U_BOOT_FIRMWARE;
 	return ret;

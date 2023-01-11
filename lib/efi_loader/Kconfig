@@ -329,6 +329,13 @@ config EFI_RNG_PROTOCOL
 	  Provide a EFI_RNG_PROTOCOL implementation using the hardware random
 	  number generator of the platform.
 
+config EFI_SERIAL_IO_PROTOCOL
+	bool "EFI_SERIAL_IO_PROTOCOL support"
+	default y
+	help
+	  Provide a EFI_SERIAL_IO_PROTOCOL implementation using the serial
+	  port of the platform.
+
 config EFI_TCG2_PROTOCOL
 	bool "EFI_TCG2_PROTOCOL support"
 	default y
