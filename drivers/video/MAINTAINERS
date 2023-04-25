@@ -1,0 +1,4 @@
+QEMU RAMFB VIDEO DRIVER
+M:     Alexander Graf <ag...@csgraf.de>
+S:     Maintained
+F:     drivers/video/ramfb.c
