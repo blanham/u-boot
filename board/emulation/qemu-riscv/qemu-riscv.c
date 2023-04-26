@@ -10,6 +10,7 @@
 #include <fdtdec.h>
 #include <image.h>
 #include <log.h>
+#include <qfw.h>
 #include <spl.h>
 #include <init.h>
 #include <virtio_types.h>
@@ -27,6 +28,19 @@ int is_flash_available(void)
 	return 0;
 }
 #endif
+
+int board_early_init_r(void) {
+	struct udevice* qfw_dev;
+
+	/*
+	 * Make sure we enumerate the QEMU Firmware device to find ramfb
+	 * before console init starts.
+	 */
+	if (IS_ENABLED(CONFIG_CMD_QFW))
+		qfw_get_dev(&qfw_dev);
+
+	return 0;
+}
 
 int board_init(void)
 {

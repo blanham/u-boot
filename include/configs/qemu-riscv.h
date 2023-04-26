@@ -23,6 +23,12 @@
 	func(SCSI, scsi, 0) \
 	func(DHCP, dhcp, na)
 
+#ifdef CONFIG_VIDEO_RAMFB
+# define QEMU_STDOUT "serial,vidconsole"
+#else
+# define QEMU_STDOUT "serial"
+#endif
+
 #include <config_distro_bootcmd.h>
 
 #define BOOTENV_DEV_QEMU(devtypeu, devtypel, instance) \
@@ -44,6 +50,9 @@
 	"scriptaddr=0x8c100000\0" \
 	"pxefile_addr_r=0x8c200000\0" \
 	"ramdisk_addr_r=0x8c300000\0" \
+	"stdin=serial\0" \
+	"stdout=" QEMU_STDOUT "\0" \
+	"stderr=" QEMU_STDOUT "\0" \
 	BOOTENV
 
 #endif /* __CONFIG_H */

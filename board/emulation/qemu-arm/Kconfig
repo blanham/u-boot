@@ -11,6 +11,12 @@ config BOARD_SPECIFIC_OPTIONS # dummy
 	imply VIRTIO_PCI
 	imply VIRTIO_NET
 	imply VIRTIO_BLK
+	imply BOARD_EARLY_INIT_R
+	imply VIDEO
+	imply VIDEO_RAMFB
+	imply SYS_CONSOLE_IS_IN_ENV
+	imply CMD_QFW
+	imply QFW_MMIO
 
 endif
 
